@@ -2,10 +2,8 @@ package com.example.kafka.configuration;
 
 
 import com.example.kafka.entity.Greeting;
-import com.fasterxml.jackson.databind.JsonSerializable;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +27,12 @@ public class KafkaProducerConfig {
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 bootstrapAddress);
+//        configProps.put(
+//                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+//                IntegerSerializer.class);
+//        configProps.put(
+//                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+//                JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps, new IntegerSerializer(), new JsonSerializer<>());
     }
 

@@ -22,18 +22,18 @@ public class KafkaConsumerConfig {
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
-    @Value(value = "${kafka.groupId}")
-    private String groupId;
-
     @Bean
     public ConsumerFactory<Integer, Greeting> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 bootstrapAddress);
-        props.put(
-                ConsumerConfig.GROUP_ID_CONFIG,
-                groupId);
+//        props.put(
+//                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+//                IntegerDeserializer.class);
+//        props.put(
+//                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+//                JsonDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(props, new IntegerDeserializer(), new JsonDeserializer<>(Greeting.class));
     }
 
@@ -44,15 +44,12 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<Integer, Greeting>
-//    filterKafkaListenerContainerFactory() {
-//
-//        ConcurrentKafkaListenerContainerFactory<Integer, Greeting> factory =
-//                new ConcurrentKafkaListenerContainerFactory<>();
-//        factory.setConsumerFactory(consumerFactory());
-//        factory.setRecordFilterStrategy(
-//                record -> record.value().contains("World"));
-//        return factory;
-//    }
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<Integer, Greeting>
+    filterKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<Integer, Greeting> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        factory.setRecordFilterStrategy(record -> record.value().getMessage().contains("demo"));
+        return factory;
+    }
 }

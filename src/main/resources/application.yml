@@ -1,0 +1,58 @@
+server:
+  port: 8081
+
+kafka:
+  bootstrapAddress: "localhost:9092"
+
+
+#spring:
+#  kafka:
+#    producer:
+#      acks:
+#      batch-size:
+#      bootstrap-servers:
+#      buffer-memory:
+#      client-id:
+#      compression-type:
+#      key-serializer:
+#      properties:
+#      retries:
+#      security:
+#        protocol:
+#      ssl:
+#        key-password:
+#        key-store-location:
+#        key-store-password:
+#        key-store-type:
+#        protocol:
+#        trust-store-location:
+#        trust-store-password:
+#        trust-store-type:
+#      transaction-id-prefix:
+#      value-serializer:
+#    consumer:
+#      group-id:
+#      auto-commit-interval:
+#      auto-offset-reset:
+#      bootstrap-servers:
+#      client-id:
+#      enable-auto-commit:
+#      fetch-max-wait:
+#      fetch-min-size:
+#      heartbeat-interval:
+#      isolation-level:
+#      key-deserializer:
+#      max-poll-records:
+#      properties:
+#      security:
+#        protocol:
+#      ssl:
+#        key-password:
+#        key-store-location:
+#        key-store-password:
+#        key-store-type:
+#        protocol:
+#        trust-store-location:
+#        trust-store-password:
+#        trust-store-type:
+#      value-deserializer:

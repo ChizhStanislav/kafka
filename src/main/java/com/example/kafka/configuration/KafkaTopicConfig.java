@@ -4,14 +4,13 @@ import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-
+import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
-
 import java.util.HashMap;
 import java.util.Map;
 
-//@Configuration
+@Configuration
 public class KafkaTopicConfig {
 
 
@@ -34,9 +33,9 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic topic1() {
         return TopicBuilder.name("topic1")
-                .partitions(2)
+                .partitions(4)
                 .replicas(1)
-//                .compact()
+                .compact()
                 .build();
     }
 
@@ -49,7 +48,7 @@ public class KafkaTopicConfig {
 //                .config(TopicConfig.COMPRESSION_TYPE_CONFIG, "zstd")
 //                .build();
 //    }
-//
+
 //    @Bean
 //    public NewTopic topic3() {
 //        return TopicBuilder.name("topic3")
